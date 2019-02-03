@@ -78,11 +78,11 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
-                ", actual price=" + price.divide(ONE_HUNDRED, 0).multiply(ONE_HUNDRED.subtract(discount)) +
-                ", discount=" + discount + "%" +
-                ", description='" + description + '\'' +
                 ", category=" + category +
+                ", price=" + price +
+                ", discount=" + discount + "%" +
+                ", actual price=" + price.divide(ONE_HUNDRED, 0).multiply(ONE_HUNDRED.subtract(discount)) +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
