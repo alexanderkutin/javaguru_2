@@ -1,6 +1,7 @@
 package com.javaguru.shoppinglist;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class CreateProductAction implements Action {
@@ -20,10 +21,21 @@ public class CreateProductAction implements Action {
         String name = scanner.nextLine();
         System.out.println("Enter product price: ");
         String price = scanner.nextLine();
+        System.out.println("Enter product discount: ");
+        String discount = scanner.nextLine();
+        System.out.println("Enter product category: ");
+        System.out.print(Arrays.asList(Category.values()) + ": ");
+        String category = scanner.nextLine();
+        System.out.println("Enter product description: ");
+        String description = scanner.nextLine();
+
 
         Product product = new Product();
         product.setName(name);
         product.setPrice(new BigDecimal(price));
+        product.setDiscount(new BigDecimal(discount));
+        product.setCategory(Category.valueOf(category.toUpperCase()));
+        product.setDescription(description);
 
         try {
             Long response = productService.create(product);

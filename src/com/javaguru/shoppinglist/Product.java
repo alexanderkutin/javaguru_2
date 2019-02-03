@@ -5,9 +5,14 @@ import java.util.Objects;
 
 public class Product {
 
+    private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
+
     private Long id;
     private String name;
     private BigDecimal price;
+    private BigDecimal discount;
+    private String description;
+    private Category category;
 
     public Long getId() {
         return id;
@@ -33,6 +38,22 @@ public class Product {
         this.price = price;
     }
 
+    public BigDecimal getDiscount(){ return discount; }
+
+    public void setDiscount(BigDecimal discount){ this.discount = discount; }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory(){ return category; }
+
+    public void setCategory(Category category){ this.category = category; }
+
 
     @Override
     public boolean equals(Object o) {
@@ -41,12 +62,15 @@ public class Product {
         Product product = (Product) o;
         return Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price);
+                Objects.equals(price, product.price) &&
+                Objects.equals(discount, product.discount) &&
+                Objects.equals(description, product.description) &&
+                category == product.category;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price);
+        return Objects.hash(id, name, price, discount, description, category);
     }
 
     @Override
@@ -55,6 +79,10 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", actual price=" + price.divide(ONE_HUNDRED, 0).multiply(ONE_HUNDRED.subtract(discount)) +
+                ", discount=" + discount + "%" +
+                ", description='" + description + '\'' +
+                ", category=" + category +
                 '}';
     }
 }
