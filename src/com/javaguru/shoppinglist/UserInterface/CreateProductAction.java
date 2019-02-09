@@ -1,4 +1,8 @@
-package com.javaguru.shoppinglist;
+package com.javaguru.shoppinglist.UserInterface;
+
+import com.javaguru.shoppinglist.Service.Category;
+import com.javaguru.shoppinglist.Service.Product;
+import com.javaguru.shoppinglist.Service.ProductService;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

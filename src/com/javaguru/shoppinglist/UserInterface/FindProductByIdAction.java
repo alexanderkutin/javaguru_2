@@ -1,4 +1,7 @@
-package com.javaguru.shoppinglist;
+package com.javaguru.shoppinglist.UserInterface;
+
+import com.javaguru.shoppinglist.Service.Product;
+import com.javaguru.shoppinglist.Service.ProductService;
 
 import java.util.Scanner;
 
@@ -17,8 +20,12 @@ public class FindProductByIdAction implements Action {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         Long id = scanner.nextLong();
-        Product response = productService.findBy(id);
-        System.out.println("Response: " + response);
+        try {
+            Product response = productService.findBy(id);
+            System.out.println("Response: " + response);
+        } catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

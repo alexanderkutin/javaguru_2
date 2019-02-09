@@ -1,4 +1,4 @@
-package com.javaguru.shoppinglist;
+package com.javaguru.shoppinglist.UserInterface;
 
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +21,7 @@ public class ConsoleUI {
                 response = scanner.nextInt();
                 actions.get(response).execute();
             } catch (Exception e) {
-                System.out.println("Error! Please try again.");
+                System.out.println("Error! Please try again.\n");
             }
         }
     }
