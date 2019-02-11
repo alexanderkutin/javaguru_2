@@ -1,5 +1,9 @@
-package com.javaguru.shoppinglist;
+package com.javaguru.shoppinglist.UserInterface;
 
+import com.javaguru.shoppinglist.Service.Product;
+import com.javaguru.shoppinglist.Service.ProductService;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FindProductByIdAction implements Action {
@@ -13,12 +17,16 @@ public class FindProductByIdAction implements Action {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InputMismatchException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         Long id = scanner.nextLong();
-        Product response = productService.findBy(id);
-        System.out.println("Response: " + response);
+        try {
+            Product response = productService.findBy(id);
+            System.out.println("Response: " + response);
+        } catch (RuntimeException e){
+            System.out.println("Error! " + e.getMessage());
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
-package com.javaguru.shoppinglist;
+package com.javaguru.shoppinglist.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Product {
@@ -35,7 +36,7 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     public BigDecimal getDiscount(){ return discount; }
@@ -81,7 +82,7 @@ public class Product {
                 ", category=" + category +
                 ", price=" + price +
                 ", discount=" + discount + "%" +
-                ", actual price=" + price.divide(ONE_HUNDRED, 0).multiply(ONE_HUNDRED.subtract(discount)) +
+                ", actual price=" + price.divide(ONE_HUNDRED, 2).multiply(ONE_HUNDRED.subtract(discount)) +
                 ", description='" + description + '\'' +
                 '}';
     }
