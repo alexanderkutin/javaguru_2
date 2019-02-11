@@ -15,7 +15,6 @@ import java.util.List;
 class ShoppingListApplication {
 
     public static void main(String[] args) {
-
         ProductRepository productRepository = new ProductRepository();
 
         ProductValidationService obligatoryValidationService = new ProductValidationService();

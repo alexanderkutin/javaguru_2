@@ -4,7 +4,7 @@ import com.javaguru.shoppinglist.Service.Product;
 
 import java.math.BigDecimal;
 
-public class ProductDiscountValidatorInterface implements ProductValidatorInterface {
+public class ProductDiscountValidator implements ProductValidator {
 
     private void checkComparsionResultIsNegative(int result) throws ProductValidationException {
         if (result > 0){
@@ -19,8 +19,8 @@ public class ProductDiscountValidatorInterface implements ProductValidatorInterf
     }
 
     @Override
-    public void validate(Product product) throws ProductValidationException {
-        checkInstantiation(product);
+    public void validate(Object productObj) throws ProductValidationException {
+        Product product = checkProductInstantiation(productObj);
         checkInstantiation(product.getPrice());
         checkComparsionResultIsNegative(product.getDiscount().compareTo((new BigDecimal(100))));
         checkIsPositive(product.getDiscount().signum());

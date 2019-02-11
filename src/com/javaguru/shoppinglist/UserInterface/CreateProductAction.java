@@ -5,6 +5,7 @@ import com.javaguru.shoppinglist.Service.Product;
 import com.javaguru.shoppinglist.Service.ProductService;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class CreateProductAction implements Action {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter product name:");
         String name = scanner.nextLine();
@@ -33,10 +34,9 @@ public class CreateProductAction implements Action {
         System.out.println("Enter product description: ");
         String description = scanner.nextLine();
 
-
         Product product = new Product();
         product.setName(name);
-        product.setPrice(new BigDecimal(price));
+        product.setPrice(new BigDecimal(price).setScale(2, RoundingMode.HALF_EVEN));
         product.setDiscount(new BigDecimal(discount));
         product.setCategory(Category.valueOf(category.toUpperCase()));
         product.setDescription(description);
@@ -45,7 +45,7 @@ public class CreateProductAction implements Action {
             Long response = productService.create(product);
             System.out.println("Response: " + response);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error! " + e.getMessage());
         }
     }
 

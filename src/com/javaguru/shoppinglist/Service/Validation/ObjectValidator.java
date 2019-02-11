@@ -1,4 +1,10 @@
 package com.javaguru.shoppinglist.Service.Validation;
 
-public class ObjectValidator {
+import com.javaguru.shoppinglist.Service.Product;
+
+public class ObjectValidator implements ProductValidator {
+    @Override
+    public void validate(Object object) throws ProductValidationException {
+        checkInstantiation(object);
+    }
 }
