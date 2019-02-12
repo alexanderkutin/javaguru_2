@@ -11,12 +11,15 @@ public class RepositoryDuplicateNameValidator {
         this.database = database;
     }
 
-    public void validate(String name) throws IllegalArgumentException {
-        database.forEach((k, v) -> {
-            if(name.equals(v.getName())){
-                throw new IllegalArgumentException("Product with Name: " + name + ", already exists");
-            }
-        });
+    private void checkEqualNames(String nameOne, String nameTwo) throws IllegalArgumentException {
+        if(nameOne.equals(nameTwo)){
+            throw new IllegalArgumentException("Product with Name: " + nameOne + ", already exists");
+        }
+    }
 
+    public void validate(String name) throws IllegalArgumentException {
+        database.forEach((productId, product) -> {
+            checkEqualNames(name, product.getName());
+        });
     }
 }
