@@ -25,10 +25,9 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public Long create(Product product) throws ProductValidationException {
+    public Long create(Product product) throws ProductValidationException, IllegalArgumentException {
         obligatoryFieldValidationService.validate(product);
         Product newProduct = productRepository.insertProduct(product);
         return newProduct.getId();
     }
-
 }
