@@ -1,6 +1,4 @@
-package com.javaguru.shoppinglist.UserInterface;
-
-import com.javaguru.shoppinglist.UserInterface.Action;
+package com.javaguru.shoppinglist.userinterface;
 
 public class ExitAction implements Action {
 

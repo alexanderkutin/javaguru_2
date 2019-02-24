@@ -1,10 +1,12 @@
-package com.javaguru.shoppinglist.Service;
+package com.javaguru.shoppinglist.service;
 
-import com.javaguru.shoppinglist.Repository.Validation.ProductNotFoundException;
-import com.javaguru.shoppinglist.Repository.ProductRepository;
-import com.javaguru.shoppinglist.Service.Validation.ObjectValidator;
-import com.javaguru.shoppinglist.Service.Validation.ProductValidationException;
-import com.javaguru.shoppinglist.Service.Validation.ProductValidationService;
+import com.javaguru.shoppinglist.domain.Product;
+import com.javaguru.shoppinglist.repository.ProductRepository;
+import com.javaguru.shoppinglist.service.validation.ObjectValidator;
+import com.javaguru.shoppinglist.service.validation.product.ProductValidationException;
+import com.javaguru.shoppinglist.service.validation.product.ProductValidationService;
+
+import java.util.Optional;
 
 public class DefaultProductService implements ProductService {
     private ProductRepository productRepository;
@@ -17,15 +19,15 @@ public class DefaultProductService implements ProductService {
         this.objectValidator = new ObjectValidator();
     }
 
-
     @Override
-    public Product findBy(Long id) throws IllegalArgumentException, ProductNotFoundException {
+    public Product findBy(Long id) {
         objectValidator.validate(id);
-        return productRepository.getProductById(id);
+        Optional<Product> optionalProduct = productRepository.getProductById(id);
+        return optionalProduct.get();
     }
 
     @Override
-    public Long create(Product product) throws ProductValidationException, IllegalArgumentException {
+    public Long create(Product product) {
         obligatoryFieldValidationService.validate(product);
         Product newProduct = productRepository.insertProduct(product);
         return newProduct.getId();

@@ -1,13 +1,13 @@
-package com.javaguru.shoppinglist.UserInterface;
+package com.javaguru.shoppinglist.userinterface.product;
 
-import com.javaguru.shoppinglist.Service.Category;
-import com.javaguru.shoppinglist.Service.Product;
-import com.javaguru.shoppinglist.Service.ProductService;
+import com.javaguru.shoppinglist.service.Category;
+import com.javaguru.shoppinglist.domain.Product;
+import com.javaguru.shoppinglist.service.ProductService;
+import com.javaguru.shoppinglist.userinterface.Action;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class CreateProductAction implements Action {
 
@@ -20,19 +20,12 @@ public class CreateProductAction implements Action {
     }
 
     @Override
-    public void execute() throws IllegalArgumentException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product name:");
-        String name = scanner.nextLine();
-        System.out.println("Enter product price: ");
-        String price = scanner.nextLine();
-        System.out.println("Enter product discount: ");
-        String discount = scanner.nextLine();
-        System.out.println("Enter product category: ");
-        System.out.print(Arrays.asList(Category.values()) + ": ");
-        String category = scanner.nextLine();
-        System.out.println("Enter product description: ");
-        String description = scanner.nextLine();
+    public void execute() {
+        String name = readFromConsole("product name");
+        String price = readFromConsole("product price");
+        String discount = readFromConsole("product discount");
+        String category = readFromConsole("category\n" + Arrays.asList(Category.values()));
+        String description = readFromConsole("description");
 
         Product product = new Product();
         product.setName(name);

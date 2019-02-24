@@ -1,10 +1,11 @@
-package com.javaguru.shoppinglist.Service.Validation;
+package com.javaguru.shoppinglist.service.validation.product;
 
-import com.javaguru.shoppinglist.Service.Product;
+import com.javaguru.shoppinglist.domain.Product;
+import com.javaguru.shoppinglist.service.validation.ValidatorInterface;
 
 import java.math.BigDecimal;
 
-public class ProductDiscountValidator implements ProductValidator {
+public class ProductDiscountValidator implements ValidatorInterface {
 
     private void verifyPriceOnDiscount(Product product){
         checkInstantiation(product.getPrice());
@@ -29,7 +30,7 @@ public class ProductDiscountValidator implements ProductValidator {
 
     @Override
     public void validate(Object productObj) throws ProductValidationException {
-        Product product = checkProductInstantiation(productObj);
+        Product product = productInstantiation(productObj);
         checkInstantiation(product.getDiscount());
         verifyPriceOnDiscount(product);
         checkDiscountLessThanMax(product.getDiscount());
