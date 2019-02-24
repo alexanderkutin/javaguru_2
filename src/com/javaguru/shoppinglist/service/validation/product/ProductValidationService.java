@@ -9,11 +9,11 @@ import java.util.Set;
 public class ProductValidationService {
     private Set<ValidatorInterface> productValidatorSet = new HashSet<>();
 
-    public void addValidator(ValidatorInterface newProductValidator){
+    public void addValidator(ValidatorInterface newProductValidator) {
         productValidatorSet.add(newProductValidator);
     }
 
-    public void validate(Product product) throws ProductValidationException {
+    public void validate(Product product) {
         productValidatorSet.forEach(s -> s.validate(product));
     }
 }

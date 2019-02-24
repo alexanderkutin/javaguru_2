@@ -6,29 +6,28 @@ import com.javaguru.shoppinglist.service.validation.ValidatorInterface;
 
 import java.util.Optional;
 
-public class ProductNameValidator implements ValidatorInterface {
+public class ProductNameValidator implements ValidatorInterface<Product> {
     private ProductRepository productRepository;
 
-    public ProductNameValidator(ProductRepository productRepository){
+    public ProductNameValidator(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    private void checkNamePresenceInProductRepository(String name){
+    private void checkNamePresenceInProductRepository(String name) {
         Optional<Product> optionalProduct = productRepository.getProductByName(name);
         if(optionalProduct.isPresent()){
             throw new IllegalArgumentException("Name \"" + name + "\", already exists");
         }
     }
 
-    private void checkLengthValue(int length) throws ProductValidationException {
+    private void checkLengthValue(int length) {
         if ((length < 3) || (length > 32)){
-            throw new ProductValidationException("Name must be between 3 and 32 symbols ");
+            throw new ObjectValidationException("Name must be between 3 and 32 symbols ");
         }
     }
 
     @Override
-    public void validate(Object productObj) throws ProductValidationException {
-        Product product = productInstantiation(productObj);
+    public void validate(Product product) {
         checkInstantiation(product.getName());
         checkLengthValue(product.getName().length());
         checkNamePresenceInProductRepository(product.getName());

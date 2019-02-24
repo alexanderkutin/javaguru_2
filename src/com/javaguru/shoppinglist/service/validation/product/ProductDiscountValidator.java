@@ -5,9 +5,9 @@ import com.javaguru.shoppinglist.service.validation.ValidatorInterface;
 
 import java.math.BigDecimal;
 
-public class ProductDiscountValidator implements ValidatorInterface {
+public class ProductDiscountValidator implements ValidatorInterface<Product> {
 
-    private void verifyPriceOnDiscount(Product product){
+    private void verifyPriceOnDiscount(Product product) {
         checkInstantiation(product.getPrice());
         BigDecimal maxPrice = new BigDecimal(20);
         if(product.getPrice().compareTo(maxPrice) < 0){
@@ -15,22 +15,21 @@ public class ProductDiscountValidator implements ValidatorInterface {
         }
     }
 
-    private void checkDiscountLessThanMax(BigDecimal discount) throws ProductValidationException {
+    private void checkDiscountLessThanMax(BigDecimal discount) {
         BigDecimal maxDiscount = new BigDecimal(100);
         if (discount.compareTo(maxDiscount) > 0){
-            throw new ProductValidationException("Discount cannot be more that 100%");
+            throw new ObjectValidationException("Discount cannot be more that 100%");
         }
     }
 
-    private void checkIsPositive(int signum) throws ProductValidationException {
+    private void checkIsPositive(int signum) {
         if (signum < 0){
-            throw new ProductValidationException("Discount cannot be negative");
+            throw new ObjectValidationException("Discount cannot be negative");
         }
     }
 
     @Override
-    public void validate(Object productObj) throws ProductValidationException {
-        Product product = productInstantiation(productObj);
+    public void validate(Product product) {
         checkInstantiation(product.getDiscount());
         verifyPriceOnDiscount(product);
         checkDiscountLessThanMax(product.getDiscount());

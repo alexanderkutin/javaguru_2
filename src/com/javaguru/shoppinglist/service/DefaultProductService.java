@@ -3,7 +3,6 @@ package com.javaguru.shoppinglist.service;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.repository.ProductRepository;
 import com.javaguru.shoppinglist.service.validation.ObjectValidator;
-import com.javaguru.shoppinglist.service.validation.product.ProductValidationException;
 import com.javaguru.shoppinglist.service.validation.product.ProductValidationService;
 
 import java.util.Optional;

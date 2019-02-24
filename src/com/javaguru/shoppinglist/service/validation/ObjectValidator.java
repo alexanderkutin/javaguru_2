@@ -1,10 +1,8 @@
 package com.javaguru.shoppinglist.service.validation;
 
-import com.javaguru.shoppinglist.service.validation.product.ProductValidationException;
-
-public class ObjectValidator implements ValidatorInterface {
+public class ObjectValidator implements ValidatorInterface<Object> {
     @Override
-    public void validate(Object object) throws ProductValidationException {
+    public void validate(Object object) {
         checkInstantiation(object);
     }
 }
