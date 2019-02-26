@@ -14,7 +14,7 @@ public class ShoppingCartNameValidator implements ValidatorInterface<ShoppingCar
     }
 
     public void checkDuplicateNameInRepository(String name) {
-        Optional<ShoppingCart> optionalCart = shoppingCartRepository.getCartByName(name);
+        Optional<ShoppingCart> optionalCart = shoppingCartRepository.findCartByName(name);
         if(optionalCart.isPresent()){
             throw new IllegalArgumentException("Name \"" + name + "\", already exists");
         }

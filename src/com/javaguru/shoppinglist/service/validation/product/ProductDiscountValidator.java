@@ -18,13 +18,13 @@ public class ProductDiscountValidator implements ValidatorInterface<Product> {
     private void checkDiscountLessThanMax(BigDecimal discount) {
         BigDecimal maxDiscount = new BigDecimal(100);
         if (discount.compareTo(maxDiscount) > 0){
-            throw new ObjectValidationException("Discount cannot be more that 100%");
+            throw new ProductValidationException("Discount cannot be more that 100%");
         }
     }
 
     private void checkIsPositive(int signum) {
         if (signum < 0){
-            throw new ObjectValidationException("Discount cannot be negative");
+            throw new ProductValidationException("Discount cannot be negative");
         }
     }
 

@@ -31,13 +31,13 @@ public class DefaultShoppingCartService implements ShoppingCartService {
 
     @Override
     public ShoppingCart findByName(String name) {
-        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.getCartByName(name);
+        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findCartByName(name);
         return optionalShoppingCart.get();
     }
 
     @Override
     public boolean deleteByName(String name) {
-        Optional<ShoppingCart> optionalCart = shoppingCartRepository.getCartByName(name);
+        Optional<ShoppingCart> optionalCart = shoppingCartRepository.findCartByName(name);
         return shoppingCartRepository.removeCart(optionalCart.get());
     }
 }

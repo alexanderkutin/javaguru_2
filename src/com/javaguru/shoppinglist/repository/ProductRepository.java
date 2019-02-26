@@ -10,7 +10,7 @@ public class ProductRepository {
     private Map<Long, Product> database = new HashMap<>();
     private Long productIdSequence = 0L;
 
-    public Optional<Product> getProductByName(String name){
+    public Optional<Product> findProductByName(String name){
         return database.values()
                 .stream()
                 .filter(product -> product.getName().equalsIgnoreCase(name))
@@ -24,7 +24,7 @@ public class ProductRepository {
         return product;
     }
 
-    public Optional<Product> getProductById(Long id) {
+    public Optional<Product> findProductById(Long id) {
         return Optional.ofNullable(database.get(id));
     }
 }

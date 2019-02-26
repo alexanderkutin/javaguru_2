@@ -21,7 +21,7 @@ public class DefaultProductService implements ProductService {
     @Override
     public Product findBy(Long id) {
         objectValidator.validate(id);
-        Optional<Product> optionalProduct = productRepository.getProductById(id);
+        Optional<Product> optionalProduct = productRepository.findProductById(id);
         return optionalProduct.get();
     }
 

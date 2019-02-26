@@ -14,15 +14,15 @@ public class ProductNameValidator implements ValidatorInterface<Product> {
     }
 
     private void checkNamePresenceInProductRepository(String name) {
-        Optional<Product> optionalProduct = productRepository.getProductByName(name);
+        Optional<Product> optionalProduct = productRepository.findProductByName(name);
         if(optionalProduct.isPresent()){
-            throw new IllegalArgumentException("Name \"" + name + "\", already exists");
+            throw new ProductValidationException("Name \"" + name + "\", already exists");
         }
     }
 
     private void checkLengthValue(int length) {
         if ((length < 3) || (length > 32)){
-            throw new ObjectValidationException("Name must be between 3 and 32 symbols ");
+            throw new ProductValidationException("Name must be between 3 and 32 symbols ");
         }
     }
 

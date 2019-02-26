@@ -7,6 +7,7 @@ import com.javaguru.shoppinglist.service.ShoppingCartService;
 import com.javaguru.shoppinglist.userinterface.Action;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class AddProductToCartAction implements Action {
 
@@ -28,36 +29,42 @@ public class AddProductToCartAction implements Action {
         }
     }
 
-    @Override
-    public void execute() {
-        ShoppingCart returnedCart = null;
-        Product returnedProduct = null;
-
-        String cartName = readFromConsole("Shopping Cart name");
-
+    private Optional<ShoppingCart> getCart(String cartName){
         try {
-            returnedCart = shoppingCartService.findByName(cartName);
+            return Optional.of(shoppingCartService.findByName(cartName));
         } catch (NoSuchElementException el) {
             System.out.println("Shopping Cart \"" + cartName + "\" does not exist");
-            return;
+            return Optional.empty();
         }
+    }
 
-        String id = readFromConsole("Product ID");
-
+    private Optional<Product> getProduct(String id){
         try {
-            returnedProduct = productService.findBy(Long.valueOf(id));
+            return  Optional.of(productService.findBy(Long.valueOf(id)));
         } catch (NumberFormatException en){
             System.out.println("ID must be entered as decimal number");
-            return;
+            return Optional.empty();
         } catch (NoSuchElementException el){
             System.out.println("Product with ID:" + id + " does not exist");
-            return;
+            return Optional.empty();
         }
+    }
 
-        printResult(shoppingCartService.addProductToCart(returnedCart, returnedProduct),
-                returnedCart.getName(),
-                returnedProduct.getName()
-        );
+    @Override
+    public void execute() {
+        String cartName = readFromConsole("Shopping Cart name");
+        if(!getCart(cartName).isPresent())
+            return;
+
+        String id = readFromConsole("Product ID");
+        if(!getProduct(id).isPresent())
+            return;
+
+        ShoppingCart returnedCart = getCart(cartName).get();
+        Product returnedProduct = getProduct(id).get();
+
+        boolean isProductAddedToCart = shoppingCartService.addProductToCart(returnedCart, returnedProduct);
+        printResult(isProductAddedToCart, returnedCart.getName(), returnedProduct.getName());
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.javaguru.shoppinglist.userinterface.product;
 import com.javaguru.shoppinglist.service.Category;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
+import com.javaguru.shoppinglist.service.validation.product.ProductValidationException;
 import com.javaguru.shoppinglist.userinterface.Action;
 
 import java.math.BigDecimal;
@@ -37,8 +38,10 @@ public class CreateProductAction implements Action {
         try {
             Long response = productService.create(product);
             System.out.println("Response: " + response);
-        } catch (Exception e) {
+        } catch (ProductValidationException e) {
             System.out.println("Error! " + e.getMessage());
+        } catch (NullPointerException eNull){
+            System.out.println("Critical Error! " + eNull.getMessage());
         }
     }
 

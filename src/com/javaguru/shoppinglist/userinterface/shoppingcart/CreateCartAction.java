@@ -1,6 +1,7 @@
 package com.javaguru.shoppinglist.userinterface.shoppingcart;
 
 import com.javaguru.shoppinglist.service.ShoppingCartService;
+import com.javaguru.shoppinglist.service.validation.product.ProductValidationException;
 import com.javaguru.shoppinglist.userinterface.Action;
 
 public class CreateCartAction implements Action {
@@ -19,8 +20,10 @@ public class CreateCartAction implements Action {
         try {
             shoppingCartService.create(name);
             System.out.println("Shopping Cart \"" + name + "\" has been created");
-        } catch (RuntimeException e){
+        } catch (ProductValidationException e){
             System.out.println("Error! " + e.getMessage());
+        } catch (NullPointerException eNull){
+            System.out.println("Critical Error! " + eNull.getMessage());
         }
     }
 
