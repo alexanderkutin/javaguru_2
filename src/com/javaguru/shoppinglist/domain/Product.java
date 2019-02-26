@@ -1,4 +1,6 @@
-package com.javaguru.shoppinglist.Service;
+package com.javaguru.shoppinglist.domain;
+
+import com.javaguru.shoppinglist.service.Category;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
