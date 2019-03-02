@@ -6,6 +6,7 @@ import com.javaguru.shoppinglist.service.DefaultProductService;
 import com.javaguru.shoppinglist.service.DefaultShoppingCartService;
 import com.javaguru.shoppinglist.service.ProductService;
 import com.javaguru.shoppinglist.service.ShoppingCartService;
+import com.javaguru.shoppinglist.service.validation.ObjectValidator;
 import com.javaguru.shoppinglist.service.validation.product.ProductDiscountValidator;
 import com.javaguru.shoppinglist.service.validation.product.ProductNameValidator;
 import com.javaguru.shoppinglist.service.validation.product.ProductPriceValidator;
@@ -35,7 +36,7 @@ class ShoppingListApplication {
         shoppingCartValidationService.addValidator(new ShoppingCartNameValidator(shoppingCartRepository));
 
         ProductService productService = new DefaultProductService(productRepository, obligatoryValidationService);
-        ShoppingCartService shoppingCartService = new DefaultShoppingCartService(shoppingCartRepository, shoppingCartValidationService);
+        ShoppingCartService shoppingCartService = new DefaultShoppingCartService(shoppingCartRepository, shoppingCartValidationService, new ObjectValidator());
 
         Action createCartAction = new CreateCartAction(shoppingCartService);
         Action findCartByNameAction = new FindCartByNameAction(shoppingCartService);

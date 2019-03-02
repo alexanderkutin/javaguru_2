@@ -1,6 +1,6 @@
 package com.javaguru.shoppinglist.userinterface.product;
 
-import com.javaguru.shoppinglist.service.Category;
+import com.javaguru.shoppinglist.domain.Category;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
 import com.javaguru.shoppinglist.service.validation.product.ProductValidationException;

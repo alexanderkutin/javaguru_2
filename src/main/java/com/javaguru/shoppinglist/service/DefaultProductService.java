@@ -12,10 +12,10 @@ public class DefaultProductService implements ProductService {
     private ProductValidationService obligatoryFieldValidationService;
     private ObjectValidator objectValidator;
 
-    public DefaultProductService(ProductRepository productRepository, ProductValidationService obligatoryFieldValidationService){
+    public DefaultProductService(ProductRepository productRepository, ProductValidationService obligatoryFieldValidationService, ObjectValidator objectValidator){
         this.productRepository = productRepository;
         this.obligatoryFieldValidationService = obligatoryFieldValidationService;
-        this.objectValidator = new ObjectValidator();
+        this.objectValidator = objectValidator;
     }
 
     @Override
