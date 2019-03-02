@@ -35,8 +35,8 @@ class ShoppingListApplication {
         ShoppingCartValidationService shoppingCartValidationService = new ShoppingCartValidationService();
         shoppingCartValidationService.addValidator(new ShoppingCartNameValidator(shoppingCartRepository));
 
-        ProductService productService = new DefaultProductService(productRepository, obligatoryValidationService);
-        ShoppingCartService shoppingCartService = new DefaultShoppingCartService(shoppingCartRepository, shoppingCartValidationService, new ObjectValidator());
+        ProductService productService = new DefaultProductService(productRepository, obligatoryValidationService, new ObjectValidator());
+        ShoppingCartService shoppingCartService = new DefaultShoppingCartService(shoppingCartRepository, shoppingCartValidationService);
 
         Action createCartAction = new CreateCartAction(shoppingCartService);
         Action findCartByNameAction = new FindCartByNameAction(shoppingCartService);
