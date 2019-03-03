@@ -15,9 +15,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 
 import java.math.BigDecimal;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -70,6 +72,15 @@ public class DefaultProductServiceTest {
 
         assertThat(result).isEqualTo(product());
         assertThat(idCaptor.getValue()).isEqualTo(id);
+    }
+
+    @Test
+    public void shouldThrowNoSuchElementException() {
+        when(repository.findProductById(1001L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> victim.findBy(1001L))
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("Product with ID:" + 1001L + " does not exist");
     }
 
     private Product product() {

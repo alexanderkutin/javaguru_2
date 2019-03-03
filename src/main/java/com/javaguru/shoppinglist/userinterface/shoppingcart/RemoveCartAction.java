@@ -23,7 +23,7 @@ public class RemoveCartAction implements Action {
             shoppingCartService.deleteByName(cartName);
             System.out.println("Shopping Cart \"" + cartName + "\" has been removed");
         } catch (NoSuchElementException el) {
-            System.out.println("Shopping Cart \"" + cartName + "\" does not exist");
+            System.out.println(el.getMessage());
         }
     }
 

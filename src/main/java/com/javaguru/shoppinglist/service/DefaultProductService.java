@@ -5,6 +5,7 @@ import com.javaguru.shoppinglist.repository.ProductRepository;
 import com.javaguru.shoppinglist.service.validation.ObjectValidator;
 import com.javaguru.shoppinglist.service.validation.product.ProductValidationService;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class DefaultProductService implements ProductService {
@@ -22,7 +23,8 @@ public class DefaultProductService implements ProductService {
     public Product findBy(Long id) {
         objectValidator.validate(id);
         Optional<Product> optionalProduct = productRepository.findProductById(id);
-        return optionalProduct.get();
+        return optionalProduct
+                .orElseThrow(() -> new NoSuchElementException("Product with ID:" + id + " does not exist"));
     }
 
     @Override

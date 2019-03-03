@@ -24,7 +24,7 @@ public class FindCartByNameAction implements Action {
             ShoppingCart returnedCart = shoppingCartService.findByName(name);
             System.out.println(returnedCart);
         } catch (NoSuchElementException el) {
-            System.out.println("Shopping Cart \"" + name + "\" does not exist");
+            System.out.println(el.getMessage());
         } catch (RuntimeException e){
             System.out.println("Error! " + e.getMessage());
         }

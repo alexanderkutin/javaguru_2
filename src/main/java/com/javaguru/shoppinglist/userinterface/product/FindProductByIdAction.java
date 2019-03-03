@@ -26,7 +26,7 @@ public class FindProductByIdAction implements Action {
         } catch (NumberFormatException en){
             System.out.println("ID must be entered as decimal number");
         } catch (NoSuchElementException el){
-            System.out.println("Product with ID:" + id + " does not exist");
+            System.out.println(el.getMessage());
         }
     }
 
