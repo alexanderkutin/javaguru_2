@@ -24,6 +24,8 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultShoppingCartServiceTest {
 
+    private final String TEST_NAME = "TEST_NAME";
+
     @Mock
     ShoppingCartRepository repository;
 
@@ -41,9 +43,9 @@ public class DefaultShoppingCartServiceTest {
 
     @Test
     public void shouldCreateCart() {
-        when(mockShopCartFactory.makeShoppingCart("TEST_NAME")).thenReturn(shoppingCart());
+        when(mockShopCartFactory.makeShoppingCart(TEST_NAME)).thenReturn(shoppingCart());
 
-        victim.create("TEST_NAME");
+        victim.create(TEST_NAME);
 
         verify(validationService).validate(shoppingCartCaptor.capture());
         assertThat(shoppingCartCaptor.getValue()).isEqualTo(shoppingCart());
@@ -66,27 +68,27 @@ public class DefaultShoppingCartServiceTest {
 
     @Test
     public void shouldFindByName() {
-        when(repository.findCartByName("TEST_NAME")).thenReturn(Optional.ofNullable(shoppingCart()));
+        when(repository.findCartByName(TEST_NAME)).thenReturn(Optional.ofNullable(shoppingCart()));
 
-        ShoppingCart result = victim.findByName("TEST_NAME");
+        ShoppingCart result = victim.findByName(TEST_NAME);
         assertThat(result).isEqualTo(shoppingCart());
     }
 
     @Test
     public void shouldThrowNoSuchElementException() {
-        when(repository.findCartByName("TEST_NAME")).thenReturn(Optional.empty());
+        when(repository.findCartByName(TEST_NAME)).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> victim.findByName("TEST_NAME"))
+        assertThatThrownBy(() -> victim.findByName(TEST_NAME))
                 .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("Shopping Cart \"TEST_NAME\" does not exist");
+                .hasMessage("Shopping Cart \"" + TEST_NAME + "\" does not exist");
     }
 
     @Test
     public void shouldDeleteByName() {
-        when(repository.findCartByName("TEST_NAME")).thenReturn(Optional.ofNullable(shoppingCart()));
+        when(repository.findCartByName(TEST_NAME)).thenReturn(Optional.ofNullable(shoppingCart()));
         when(repository.removeCart(shoppingCart())).thenReturn(true);
 
-        Boolean result = victim.deleteByName("TEST_NAME");
+        Boolean result = victim.deleteByName(TEST_NAME);
         verify(repository).removeCart(shoppingCartCaptor.capture());
 
         assertEquals(result, true);
@@ -94,7 +96,7 @@ public class DefaultShoppingCartServiceTest {
     }
 
     private ShoppingCart shoppingCart() {
-        ShoppingCart shoppingCart = new ShoppingCart("TEST_NAME");
+        ShoppingCart shoppingCart = new ShoppingCart(TEST_NAME);
         return shoppingCart;
     }
 }

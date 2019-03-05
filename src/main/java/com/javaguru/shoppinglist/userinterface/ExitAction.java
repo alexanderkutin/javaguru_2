@@ -1,5 +1,6 @@
 package com.javaguru.shoppinglist.userinterface;
 
+
 public class ExitAction implements Action {
 
     private static final String ACTION_NAME = "Exit";

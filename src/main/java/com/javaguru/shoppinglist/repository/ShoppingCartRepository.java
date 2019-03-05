@@ -1,11 +1,13 @@
 package com.javaguru.shoppinglist.repository;
 
 import com.javaguru.shoppinglist.domain.ShoppingCart;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Component
 public class ShoppingCartRepository {
     Set<ShoppingCart> database = new HashSet<>();
 

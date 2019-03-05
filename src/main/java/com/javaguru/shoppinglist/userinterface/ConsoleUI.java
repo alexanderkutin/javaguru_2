@@ -1,5 +1,7 @@
 package com.javaguru.shoppinglist.userinterface;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,6 +9,7 @@ public class ConsoleUI {
 
     private final List<Action> actions;
 
+    @Autowired
     public ConsoleUI(List<Action> actions) {
         this.actions = actions;
     }

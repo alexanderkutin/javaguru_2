@@ -4,11 +4,13 @@ import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.domain.ShoppingCart;
 import com.javaguru.shoppinglist.repository.ShoppingCartRepository;
 import com.javaguru.shoppinglist.service.validation.shoppingcart.ShoppingCartValidationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-
+@Component
 public class DefaultShoppingCartService implements ShoppingCartService {
     static class FactoryHelper{
         ShoppingCart makeShoppingCart(String name){
@@ -26,9 +28,11 @@ public class DefaultShoppingCartService implements ShoppingCartService {
         this.shoppingCartFactory = shoppingCartFactory;
     }
 
+    @Autowired
     public DefaultShoppingCartService(ShoppingCartRepository shoppingCartRepository, ShoppingCartValidationService validationService) {
         this(shoppingCartRepository, validationService, new FactoryHelper());
     }
+
 
     @Override
     public void create(String name) {

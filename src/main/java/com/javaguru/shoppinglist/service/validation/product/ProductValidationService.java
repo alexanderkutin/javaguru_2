@@ -9,8 +9,8 @@ import java.util.Set;
 public class ProductValidationService {
     private Set<ValidatorInterface> productValidatorSet = new HashSet<>();
 
-    public void addValidator(ValidatorInterface newProductValidator) {
-        productValidatorSet.add(newProductValidator);
+    public ProductValidationService(Set<ValidatorInterface> productValidatorSet) {
+        this.productValidatorSet = productValidatorSet;
     }
 
     public void validate(Product product) {

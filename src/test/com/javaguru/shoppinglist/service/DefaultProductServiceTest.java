@@ -26,6 +26,8 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultProductServiceTest {
 
+    private final Long TEST_ID = 1001L;
+
     @Mock
     private ProductRepository repository;
 
@@ -62,25 +64,23 @@ public class DefaultProductServiceTest {
 
     @Test
     public void shouldFindProductById() {
-        Long id = 1001L;
+        when(repository.findProductById(TEST_ID)).thenReturn(Optional.ofNullable(product()));
 
-        when(repository.findProductById(id)).thenReturn(Optional.ofNullable(product()));
-
-        Product result = victim.findBy(id);
+        Product result = victim.findBy(TEST_ID);
 
         verify(validator).validate(idCaptor.capture());
 
         assertThat(result).isEqualTo(product());
-        assertThat(idCaptor.getValue()).isEqualTo(id);
+        assertThat(idCaptor.getValue()).isEqualTo(TEST_ID);
     }
 
     @Test
     public void shouldThrowNoSuchElementException() {
-        when(repository.findProductById(1001L)).thenReturn(Optional.empty());
+        when(repository.findProductById(TEST_ID)).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> victim.findBy(1001L))
+        assertThatThrownBy(() -> victim.findBy(TEST_ID))
                 .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("Product with ID:" + 1001L + " does not exist");
+                .hasMessage("Product with ID:" + TEST_ID + " does not exist");
     }
 
     private Product product() {
@@ -89,7 +89,7 @@ public class DefaultProductServiceTest {
         product.setCategory(Category.TOOL);
         product.setPrice(new BigDecimal(100));
         product.setDiscount(new BigDecimal(50));
-        product.setId(1001L);
+        product.setId(TEST_ID);
         product.setDescription("TEST_DESCRIPTION");
         return product;
     }
