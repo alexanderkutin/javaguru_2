@@ -5,10 +5,13 @@ import com.javaguru.shoppinglist.domain.ShoppingCart;
 import com.javaguru.shoppinglist.service.ProductService;
 import com.javaguru.shoppinglist.service.ShoppingCartService;
 import com.javaguru.shoppinglist.userinterface.Action;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Component
 public class AddProductToCartAction implements Action {
 
     private static final String ACTION_NAME = "Add Product to Shopping Cart";
@@ -16,6 +19,7 @@ public class AddProductToCartAction implements Action {
     private final ShoppingCartService shoppingCartService;
     private final ProductService productService;
 
+    @Autowired
     public AddProductToCartAction(ShoppingCartService shoppingCartService, ProductService productService) {
         this.shoppingCartService = shoppingCartService;
         this.productService = productService;

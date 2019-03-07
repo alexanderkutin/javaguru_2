@@ -2,9 +2,11 @@ package com.javaguru.shoppinglist.service.validation.product;
 
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.validation.ValidatorInterface;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
 public class ProductDiscountValidator implements ValidatorInterface<Product> {
 
     private void checkDiscountLessThanMax(BigDecimal discount) {

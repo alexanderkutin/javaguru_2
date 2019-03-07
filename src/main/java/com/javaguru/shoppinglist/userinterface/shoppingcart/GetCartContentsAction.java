@@ -3,15 +3,19 @@ package com.javaguru.shoppinglist.userinterface.shoppingcart;
 import com.javaguru.shoppinglist.domain.ShoppingCart;
 import com.javaguru.shoppinglist.service.ShoppingCartService;
 import com.javaguru.shoppinglist.userinterface.Action;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
+@Component
 public class GetCartContentsAction implements Action {
 
     private static final String ACTION_NAME = "Show Product Cart contents";
 
     private final ShoppingCartService shoppingCartService;
 
+    @Autowired
     public GetCartContentsAction(ShoppingCartService shoppingCartService) {
         this.shoppingCartService = shoppingCartService;
     }
