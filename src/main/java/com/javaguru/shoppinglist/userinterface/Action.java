@@ -11,4 +11,10 @@ public interface Action {
         System.out.println("Enter " + value + ":");
         return scanner.nextLine();
     }
+
+    default String setZeroIfEmpty(String input) {
+        if (input.isEmpty())
+            return "0";
+        return input;
+    }
 }

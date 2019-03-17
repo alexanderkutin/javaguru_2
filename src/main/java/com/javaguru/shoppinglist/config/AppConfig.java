@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @ComponentScan(basePackages = "com.javaguru.shoppinglist")
-@Import({ConsoleUiConfig.class, ValidationServiceConfig.class})
+@Import({ConsoleUiConfig.class, ShoppingCartUiConfig.class, ValidationServiceConfig.class})
 public class AppConfig {
 
 }

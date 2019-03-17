@@ -1,8 +1,6 @@
 package com.javaguru.shoppinglist;
 
 import com.javaguru.shoppinglist.config.AppConfig;
-import com.javaguru.shoppinglist.config.ConsoleUiConfig;
-import com.javaguru.shoppinglist.config.ValidationServiceConfig;
 import com.javaguru.shoppinglist.userinterface.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -10,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 class ShoppingListApplication {
 
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class, ConsoleUiConfig.class, ValidationServiceConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         ConsoleUI consoleUI = context.getBean(ConsoleUI.class);
         consoleUI.start();
     }
