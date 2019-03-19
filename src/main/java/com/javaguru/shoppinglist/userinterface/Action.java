@@ -13,8 +13,9 @@ public interface Action {
     }
 
     default String setZeroIfEmpty(String input) {
-        if (input.isEmpty())
+        if (input.isEmpty()) {
             return "0";
+        }
         return input;
     }
 }

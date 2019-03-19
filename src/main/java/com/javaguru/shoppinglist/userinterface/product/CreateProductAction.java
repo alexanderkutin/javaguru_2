@@ -35,7 +35,7 @@ public class CreateProductAction implements Action {
         Product product = new Product();
         product.setName(name);
         product.setPrice(new BigDecimal(setZeroIfEmpty(price)).setScale(2, RoundingMode.HALF_EVEN));
-        product.setDiscount(new BigDecimal(setZeroIfEmpty(discount)));
+        product.setDiscount(new BigDecimal(setZeroIfEmpty(discount)).setScale(4, RoundingMode.HALF_EVEN));
         product.setCategory(Category.valueOf(category.toUpperCase()));
         product.setDescription(description);
 

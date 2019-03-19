@@ -2,7 +2,7 @@ package com.javaguru.shoppinglist.service;
 
 import com.javaguru.shoppinglist.domain.Category;
 import com.javaguru.shoppinglist.domain.Product;
-import com.javaguru.shoppinglist.repository.ProductRepository;
+import com.javaguru.shoppinglist.repository.ProductRepositoryMemory;
 import com.javaguru.shoppinglist.service.validation.ObjectValidator;
 import com.javaguru.shoppinglist.service.validation.product.ProductValidationService;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class DefaultProductServiceTest {
     private final Long TEST_ID = 1001L;
 
     @Mock
-    private ProductRepository repository;
+    private ProductRepositoryMemory repository;
 
     @Mock
     private ProductValidationService validationService;
