@@ -1,19 +1,37 @@
 package com.javaguru.shoppinglist.domain;
 
+//import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+@Entity
+@Table(name = "product")
 public class Product {
 
     private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
+    @Id
+    @Column(name = "id")
+    /*For Hibernate v4*/
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    /*For Hibernate v5*/
+    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    //@GenericGenerator(name = "native", strategy = "native")
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "discount")
     private BigDecimal discount;
-    private String description;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
     private Category category;
+    @Column(name = "description")
+    private String description;
 
     public Long getId() {
         return id;

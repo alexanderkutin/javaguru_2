@@ -5,13 +5,13 @@ import com.javaguru.shoppinglist.repository.ProductRepository;
 import com.javaguru.shoppinglist.service.validation.ObjectValidator;
 import com.javaguru.shoppinglist.service.validation.product.ProductValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@Component
+@Service
 public class DefaultProductService implements ProductService {
     private ProductRepository productRepository;
     private ProductValidationService obligatoryFieldValidationService;

@@ -8,21 +8,21 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@Profile({"local", "dev"})
-public class ProductRepositoryDB implements ProductRepository {
+@Repository
+@Profile("jdbc")
+public class ProductRepositoryJdbc implements ProductRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ProductRepositoryDB(JdbcTemplate jdbcTemplate) {
+    public ProductRepositoryJdbc(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -73,5 +73,10 @@ public class ProductRepositoryDB implements ProductRepository {
             return Optional.ofNullable(products.get(0));
         }
         return Optional.empty();
+    }
+
+    public List<Product> getAllProducts() {
+
+        return null;
     }
 }
