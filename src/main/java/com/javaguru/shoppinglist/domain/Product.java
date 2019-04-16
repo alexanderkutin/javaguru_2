@@ -8,13 +8,13 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id",  nullable = false, unique = true)
     /*For Hibernate v4*/
     @GeneratedValue(strategy = GenerationType.AUTO)
     /*For Hibernate v5*/
@@ -57,7 +57,7 @@ public class Product {
         this.price = price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
-    public BigDecimal getDiscount(){ return discount; }
+    public BigDecimal getDiscount() { return discount; }
 
     public void setDiscount(BigDecimal discount){ this.discount = discount; }
 
@@ -69,9 +69,9 @@ public class Product {
         this.description = description;
     }
 
-    public Category getCategory(){ return category; }
+    public Category getCategory() { return category; }
 
-    public void setCategory(Category category){ this.category = category; }
+    public void setCategory(Category category) { this.category = category; }
 
 
     @Override

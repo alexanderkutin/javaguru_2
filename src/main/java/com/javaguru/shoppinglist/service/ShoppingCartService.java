@@ -1,11 +1,13 @@
 package com.javaguru.shoppinglist.service;
 
-import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.domain.ShoppingCart;
+import com.javaguru.shoppinglist.dto.ShoppingCartDTO;
 
 public interface ShoppingCartService {
-    void create(String name);
-    ShoppingCart findByName(String name);
-    boolean deleteByName(String name);
-    boolean addProductToCart(ShoppingCart shoppingCart, Product product);
+    Long create(ShoppingCartDTO shoppingCartDTO);
+    ShoppingCartDTO findByName(String name);
+    ShoppingCartDTO findById(Long id);
+    void deleteByName(String name);
+    void deleteById(Long id);
+    boolean addProductToCart(String shoppingCartName, Long productId);
 }

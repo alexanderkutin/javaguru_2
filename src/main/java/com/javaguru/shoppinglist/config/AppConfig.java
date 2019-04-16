@@ -20,7 +20,6 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com.javaguru.shoppinglist")
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
-@Import({ConsoleUiConfig.class, ShoppingCartUiConfig.class, ValidationServiceConfig.class})
 public class AppConfig {
 
     @Bean
