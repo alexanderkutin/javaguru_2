@@ -5,6 +5,7 @@ import com.javaguru.shoppinglist.userinterface.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+
 class ShoppingListApplication {
 
     public static void main(String[] args) {

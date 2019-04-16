@@ -25,6 +25,7 @@ public class ConsoleUI {
                 actions.get(response).execute();
             } catch (Exception e) {
                 System.out.println("Error! Please try again.");
+                e.printStackTrace();
             }
         }
     }

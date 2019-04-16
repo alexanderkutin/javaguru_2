@@ -24,6 +24,7 @@ public class SubConsoleUI {
                 actions.get(response - 1).execute();
             } catch (Exception e) {
                 System.out.println("Error! Please try again.");
+                e.printStackTrace();
             }
         }
     }
